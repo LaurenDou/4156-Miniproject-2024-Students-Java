@@ -54,7 +54,6 @@ public class RouteControllerTests {
     mockMvc.perform(get("/retrieveDept")
                     .param("deptCode", "cOmS"))
             .andExpect(status().isOk());
-
   }
 
   @Test
@@ -62,7 +61,6 @@ public class RouteControllerTests {
     mockMvc.perform(get("/retrieveDept")
                     .param("deptCode", "FakeDeptName"))
             .andExpect(status().isNotFound());
-
   }
 
   @Test
@@ -71,7 +69,6 @@ public class RouteControllerTests {
                     .param("deptCode", "CoMS")
                     .param("courseCode", "4156"))
             .andExpect(status().isOk());
-
   }
 
   @Test
@@ -80,7 +77,6 @@ public class RouteControllerTests {
                     .param("deptCode", "CoMS")
                     .param("courseCode", "123123123"))
             .andExpect(status().isNotFound());
-
   }
 
   @Test
@@ -89,7 +85,6 @@ public class RouteControllerTests {
                     .param("deptCode", "FakeDepartment")
                     .param("courseCode", "123"))
             .andExpect(status().isNotFound());
-
   }
 
   @Test
@@ -98,7 +93,6 @@ public class RouteControllerTests {
                     .param("deptCode", "ChEm")
                     .param("courseCode", "2444"))
             .andExpect(status().isOk());
-
   }
 
   @Test
@@ -107,7 +101,6 @@ public class RouteControllerTests {
                     .param("deptCode", "FakeCourse")
                     .param("courseCode", "123"))
             .andExpect(status().isNotFound());
-
   }
 
   @Test
@@ -115,7 +108,6 @@ public class RouteControllerTests {
     mockMvc.perform(get("/getMajorCountFromDept")
                     .param("deptCode", "ChEm"))
             .andExpect(status().isOk());
-
   }
 
   @Test
@@ -123,7 +115,6 @@ public class RouteControllerTests {
     mockMvc.perform(get("/getMajorCountFromDept")
                     .param("deptCode", "FakeCourse"))
             .andExpect(status().isNotFound());
-
   }
 
   @Test
@@ -132,7 +123,6 @@ public class RouteControllerTests {
                     .param("deptCode", "chem"))
             .andExpect(content().string(containsString("department chair")))
             .andExpect(status().isOk());
-
   }
 
   @Test
@@ -140,7 +130,6 @@ public class RouteControllerTests {
     mockMvc.perform(get("/idDeptChair")
                     .param("deptCode", "FakeCourse"))
             .andExpect(status().isNotFound());
-
   }
 
   @Test
@@ -149,7 +138,6 @@ public class RouteControllerTests {
                     .param("deptCode", "chEm")
                     .param("courseCode", "2444"))
             .andExpect(status().isOk());
-
   }
 
   @Test
@@ -158,7 +146,6 @@ public class RouteControllerTests {
                     .param("deptCode", "FakeCourse")
                     .param("courseCode", "123"))
             .andExpect(status().isNotFound());
-
   }
 
   @Test
@@ -167,7 +154,6 @@ public class RouteControllerTests {
                     .param("deptCode", "chEm")
                     .param("courseCode", "2444"))
             .andExpect(status().isOk());
-
   }
 
   @Test
@@ -176,7 +162,6 @@ public class RouteControllerTests {
                     .param("deptCode", "FakeCourse")
                     .param("courseCode", "123"))
             .andExpect(status().isNotFound());
-
   }
 
   @Test
@@ -185,7 +170,6 @@ public class RouteControllerTests {
                     .param("deptCode", "chEm")
                     .param("courseCode", "2444"))
             .andExpect(status().isOk());
-
   }
 
   @Test
@@ -194,7 +178,6 @@ public class RouteControllerTests {
                     .param("deptCode", "FakeCourse")
                     .param("courseCode", "123"))
             .andExpect(status().isNotFound());
-
   }
 
   @Test
@@ -202,12 +185,25 @@ public class RouteControllerTests {
 
     mockMvc.perform(patch("/addMajorToDept?deptCode=chEm").contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk());
-
   }
 
   @Test
   public void addInvalidMajorToDeptTest() throws Exception {
     mockMvc.perform(patch("/addMajorToDept?deptCode=FakeCourse")
+                    .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isNotFound());
+  }
+
+  @Test
+  public void removeMajorFromDeptTest() throws Exception {
+    mockMvc.perform(patch("/removeMajorFromDept?deptCode=comS&")
+                    .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk());
+  }
+
+  @Test
+  public void removeInvalidMajorFromDeptTest() throws Exception {
+    mockMvc.perform(patch("/removeMajorFromDept?deptCode=FakeCourse")
                     .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isNotFound());
 
