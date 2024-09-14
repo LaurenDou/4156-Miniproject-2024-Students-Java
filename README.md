@@ -2,8 +2,6 @@
 
 Please follow the assignment specifications on Courseworks when completing this project.
 
-Note: junit added to pom.xml
-
 # To Run Code:
 ```
 mvn spring-boot:run
@@ -12,8 +10,16 @@ mvn spring-boot:run
 Example URL:
 http://localhost:8080/retrieveCourse?deptCode=COMS&courseCode=4156
 
+# Run tests
+```
+mvn test
+```
+# Run checkstyle
+```
+mvn checkstyle:check
+```
 
-# How to run code coverage
+# Run code coverage
 ```
 mvn verify (mvn clean verify if for some reason that doesn't work)
 ```
@@ -23,7 +29,8 @@ open target/site/jacoco/index.html
 ```
 
 
-# How to run PMD -> Taken from this website
+# Run PMD
+Taken from this website (feel free to visit if you have questions about the setup)
 https://sachinsf.com/how-to-use-pmd-code-analyzer-with-intellij/
 
 1. Download PMD
